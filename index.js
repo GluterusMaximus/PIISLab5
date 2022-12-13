@@ -18,8 +18,12 @@ console.log('Target function minimal value:')
 console.log(simplexResult?.targetValue)
 
 console.log('\nVariable coefficient values:')
+const variableValues = Array(B.length).fill(0)
 for (const i in simplexResult?.basicVariables) {
-  console.log(simplexResult?.basicVariables)
+  const basic = simplexResult?.basicVariables[i]
+  variableValues[basic] =
+    simplexResult?.matrix[Number(i) + 1].at(-1)
 }
-
-console.dir({ matrix: simplexResult?.matrix })
+for (const i in A[0]) {
+  console.log(`x${Number(i) + 1}: ${variableValues[i]}`)
+}
