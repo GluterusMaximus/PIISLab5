@@ -176,10 +176,8 @@ const findOptimalSolution = (
     pivotMatrix(matrixCopy, leavingI, enteringI)
   }
   return {
-    targetValue: +matrixCopy[0]
-      .at(-1)
-      .toFixed(4)
-      .replace('-0', '0'),
+    targetValue: +matrixCopy[0].at(-1).toFixed(4),
+    // .replace('-0', '0'),
     basicVariables,
     matrix: roundMatrix(
       isInitial
@@ -242,9 +240,8 @@ const roundMatrix = (matrix) => {
   const matrixCopy = deepCopy(matrix)
   for (const i in matrixCopy) {
     for (const j in matrixCopy[i]) {
-      matrixCopy[i][j] = +matrixCopy[i][j]
-        .toFixed(4)
-        .replace('-0', '0')
+      matrixCopy[i][j] = +matrixCopy[i][j].toFixed(4)
+      // .replace('-0', '0')
     }
   }
   return matrixCopy
