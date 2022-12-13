@@ -1,18 +1,7 @@
 import { deepCopy } from './utils.js'
 
 export default function (A, B, C) {
-  // A = [
-  //   [2, 1, -1, 0],
-  //   [1, 2, 0, 1],
-  // ]
-  // B = [0, 0, 0, 0]
-  // C = [6, 6]
   let { basicVariables, targetValue, matrix } =
-    // {
-    //   basicVariables: [1, 2],
-    //   targetValue: 12,
-    //   matrix: [[1]],
-    // }
     findInitialBFS(A, B, C)
   console.dir({ basicVariables, targetValue })
   if (targetValue !== 0) return null
@@ -20,22 +9,6 @@ export default function (A, B, C) {
   matrix.shift()
   matrix.unshift([...B, 0])
   let adjustedMatrix = adjustMatrix(matrix, basicVariables)
-
-  // basicVariables = [4, 3]
-  // matrix = [
-  //   [0, 0, 0, 0, -1, 0],
-  //   [2, 1, -1, 0, 1, 6],
-  //   [1, 2, 0, 1, 0, 6],
-  // ]
-  // adjustedMatrix = adjustMatrix(matrix, basicVariables)
-
-  // basicVariables = [0, 3]
-  // matrix = [
-  //   [-1, -1, 0, 0, 0],
-  //   [1, 0.5, -0.5, 0, 3],
-  //   [0, 1.5, 0.5, 1, 3],
-  // ]
-  // adjustedMatrix = adjustMatrix(matrix, basicVariables)
 
   console.dir({ matrix, adjustedMatrix })
   return findOptimalSolution(
@@ -105,7 +78,6 @@ const constructMatrix = (
   const matrix = []
   matrix.push(targetCoefs.concat(targetValue))
   const otherRows = constraintCoefs.map((row, i) => {
-    // console.log(otherRows)
     return row.concat(freeMembers[i])
   })
   matrix.push(...otherRows)
@@ -177,7 +149,6 @@ const findOptimalSolution = (
   }
   return {
     targetValue: +matrixCopy[0].at(-1).toFixed(4),
-    // .replace('-0', '0'),
     basicVariables,
     matrix: roundMatrix(
       isInitial
@@ -241,10 +212,7 @@ const roundMatrix = (matrix) => {
   for (const i in matrixCopy) {
     for (const j in matrixCopy[i]) {
       matrixCopy[i][j] = +matrixCopy[i][j].toFixed(4)
-      // .replace('-0', '0')
     }
   }
   return matrixCopy
 }
-
-// x4 = 1, x1 = 1, x3 = 3
